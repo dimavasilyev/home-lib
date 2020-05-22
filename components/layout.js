@@ -1,10 +1,10 @@
 import Sidebar from '../components/sidebar';
 
-const Layout = ({ children }) => {
+const Layout = ({ children, title = 'Home library' }) => {
   return (
     <div className="md:flex flex-col md:flex-row md:min-h-screen w-full">
-      <Sidebar title="Home library" />
-      <div className="ml-20">{children}</div>
+      <Sidebar title={title} />
+      <div className="p-8">{children}</div>
     </div>
   );
 };

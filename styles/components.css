@@ -1,15 +1,16 @@
-.button {
+/* Button */
+.nav-item {
   @apply block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 rounded-lg;
 }
 
-.button.active {
+.nav-item.active {
   @apply bg-gray-200;
 }
 
-.button:hover {
+.nav-item:hover {
   @apply text-gray-900 bg-gray-200;
 }
 
-.button:focus {
+.nav-item:focus {
   @apply text-gray-900 bg-gray-200 outline-none shadow-outline;
 }

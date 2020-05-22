@@ -4,9 +4,11 @@ import { useActiveLink, useKeyPress } from '../hooks';
 
 const Sidebar = ({ title }) => {
   const [isActive, setState] = useState(false);
+
   const hideSidebar = () => setState(false);
 
   useKeyPress('Escape', hideSidebar);
+
   const isLinkActive = useActiveLink();
 
   const items = useMemo(
@@ -28,7 +30,7 @@ const Sidebar = ({ title }) => {
   );
 
   return (
-    <div className="flex flex-col w-full md:w-64 text-gray-700 bg-white dark-mode:text-gray-200 dark-mode:bg-gray-800 flex-shrink-0">
+    <div className="flex flex-col w-full md:w-64 text-gray-700 bg-white dark-mode:text-gray-200 dark-mode:bg-gray-800 flex-shrink-0 border-r-2 border-gray-200">
       <div className="flex-shrink-0 px-8 py-4 flex flex-row items-center justify-between">
         <Link href="/">
           <a className="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline">
@@ -63,7 +65,7 @@ const Sidebar = ({ title }) => {
       >
         {items.map(({ title, href }) => (
           <Link href={href} key={title}>
-            <a className={`button ${isLinkActive(href) ? 'active' : ''}`}>{title}</a>
+            <a className={`nav-item ${isLinkActive(href) ? 'active' : ''}`}>{title}</a>
           </Link>
         ))}
       </nav>

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactModal from 'react-modal';
 
-const Modal = ({ children, onClose, title, ...props }) => {
+const Modal = ({ children, onClose, title, customStyles, ...props }) => {
   return (
     <ReactModal
       onRequestClose={onClose}
@@ -17,6 +17,7 @@ const Modal = ({ children, onClose, title, ...props }) => {
           bottom: 'auto',
           maxHeight: '85vh',
         },
+        ...customStyles,
       }}
     >
       <div className="flex justify-between pb-6 items-start">

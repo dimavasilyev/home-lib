@@ -17,7 +17,6 @@ const ShelvesPage = () => {
       title: 'Serious shelf',
     },
   ]);
-  console.log('shelves:', shelves);
 
   const addNewShelf = (shelf) => {
     setChelves([...shelves, { id: shelves.length + 1, ...shelf }]);
@@ -31,7 +30,7 @@ const ShelvesPage = () => {
     <Layout pageTitle="Shelves">
       <button
         onClick={handleAddButton}
-        className="block mb-8 ml-auto rounded-lg rounded-lg focus:outline-none focus:shadow-outline text-blue-700 underline"
+        className="mb-8 block ml-auto rounded-lg rounded-lg focus:outline-none focus:shadow-outline text-blue-700 underline"
       >
         + add new shelf
       </button>

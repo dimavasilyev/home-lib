@@ -43,7 +43,6 @@ const CreateShelfModal = ({ onCreate, shelves, ...props }) => {
   return (
     <Modal
       title="Create new shelf"
-      ariaHideApp={false}
       customStyles={{
         content: {
           top: '10%',

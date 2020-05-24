@@ -5,6 +5,7 @@ const Modal = ({ children, onClose, title, customStyles, ...props }) => {
   return (
     <ReactModal
       onRequestClose={onClose}
+      ariaHideApp={false}
       {...props}
       style={{
         overlay: {

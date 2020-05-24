@@ -17,7 +17,7 @@ const SearchInput = ({ onChange }) => {
       onChange={handleChange}
       className="input mb-6"
       type="text"
-      placeholder="Search by book title"
+      placeholder="Search by title"
     />
   );
 };

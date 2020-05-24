@@ -9,6 +9,10 @@ const Meta = ({ title }) => {
       <title>Home Library{title ? ` - ${title}` : ''}</title>
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <link rel="icon" href={faviconUri} />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet"
+      />
     </Head>
   );
 };

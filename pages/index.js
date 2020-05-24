@@ -29,13 +29,10 @@ const IndexPage = () => {
     fetchBooks();
   }, [debouncedSearchQuery]);
 
-  const isEmptyQuery = !searchQuery;
-
-
   return (
     <Layout>
       <SearchInput onChange={setSearchQuery} />
-      {isEmptyQuery && (
+      {!searchQuery && (
         <div className="text-3xl text-center font-semibold">Please write something</div>
       )}
       {isSearching ? (
@@ -43,7 +40,7 @@ const IndexPage = () => {
           <Spinner />
         </div>
       ) : (
-        <BooksList books={books} onListItemClick={() => console.log('hey')} />
+        <BooksList books={books} />
       )}
     </Layout>
   );

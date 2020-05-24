@@ -3,21 +3,9 @@ import Modal from '../modal';
 import api from '../../api';
 
 const BookDetailsModal = ({ bookId, ...props }) => {
-  // categories, description, imageLinks, averageRating, title, publisher,
   const [details, setDetails] = useState({});
   const { volumeInfo = {} } = details;
-  const {
-    categories,
-    description,
-    imageLinks,
-    averageRating,
-    title,
-    publisher,
-    authors,
-    ratingsCount,
-  } = volumeInfo;
-  console.log('volumeInfo:', volumeInfo);
-  let rating = '';
+  const { categories, description, imageLinks = {}, title, publisher, authors } = volumeInfo;
 
   const fetchBookDetails = async () => {
     try {
@@ -28,31 +16,27 @@ const BookDetailsModal = ({ bookId, ...props }) => {
     }
   };
 
-  if (averageRating && ratingsCount) {
-    rating = `${averageRating} / ${ratingsCount}`;
-  }
-
   return (
     <Modal title="Book details" onAfterOpen={fetchBookDetails} {...props}>
-      {/* <img src={imageLinks.smallThumbnail} alt="" /> */}
-
-      <div className="font-semibold">{title}</div>
-      {rating && <div className="font-semibold">{rating}</div>}
-      <div className="">
-        {authors?.map((category) => (
-          <span className="inline-block text-sm font-semibold text-gray-700 mr-2">{category}</span>
+      <img className="xs:w-full md:float-left pr-6 pb-6" src={imageLinks?.smallThumbnail} alt="" />
+      <div className="font-semibold text-lg mb-2">{title}</div>
+      <div className="mb-2">
+        {authors?.map((author) => (
+          <span className="inline-block text-sm font-semibold text-gray-700 mr-2">{author}</span>
         ))}
       </div>
-
-      <div className="font-semibold">{publisher}</div>
+      <div className="font-semibold text-gray-600 mb-3">{publisher}</div>
+      <button className="mb-3 rounded-lg rounded-lg focus:outline-none focus:shadow-outline text-blue-700 underline">
+        + add to shelf
+      </button>
       <div className="">
         {categories?.map((category) => (
-          <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
+          <span className="inline-block bg-gray-200 mt-1 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
             {category}
           </span>
         ))}
       </div>
-      <div dangerouslySetInnerHTML={{ __html: description }} />
+      <div className="text-sm mt-6" dangerouslySetInnerHTML={{ __html: description }} />
     </Modal>
   );
 };

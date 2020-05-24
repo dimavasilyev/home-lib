@@ -7,16 +7,20 @@ const Modal = ({ children, onClose, title, ...props }) => {
       onRequestClose={onClose}
       {...props}
       style={{
+        overlay: {
+          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        },
         content: {
           top: '10%',
           left: '15%',
           right: '15%',
           bottom: 'auto',
+          maxHeight: '85vh',
         },
       }}
     >
       <div className="flex justify-between pb-6 items-start">
-        <h2 className="text-2xl">{title}</h2>
+        <h2 className="text-2xl font-semibold">{title}</h2>
         <button
           onClick={onClose}
           className="rounded-lg rounded-lg focus:outline-none focus:shadow-outline"
@@ -30,7 +34,6 @@ const Modal = ({ children, onClose, title, ...props }) => {
           </svg>
         </button>
       </div>
-
       {children}
       <style jsx global>
         {`

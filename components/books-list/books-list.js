@@ -4,7 +4,6 @@ import BookDetailsModal from '../modals/book-details-modal';
 import { useModal } from '../../hooks';
 
 const BooksList = ({ books = [] }) => {
-  console.log('books:', books);
   const { isOpen, openModalWithProps, modalProps } = useModal();
 
   const handleListItemClick = useCallback((id) => {
@@ -12,7 +11,7 @@ const BooksList = ({ books = [] }) => {
   }, []);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+    <div className="flex flex-wrap justify-center">
       {books.map((book) => (
         <BookListItem key={book.id} {...book} onClick={() => handleListItemClick(book.id)} />
       ))}

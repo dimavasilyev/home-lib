@@ -2,24 +2,17 @@ import { useState } from 'react';
 import Layout from '../components/layout';
 import ShelvesList from '../components/shelves-list/shelves-list';
 import CreateShelfModal from '../components/modals/create-shelf-modal';
-import { useModal } from '../hooks';
+import { useModal, useGlobalState } from '../hooks';
 
 const ShelvesPage = () => {
   const { isOpen, openModalWithProps, modalProps } = useModal();
-  const [shelves, setChelves] = useState([
-    {
-      id: 1,
-      title: 'My nice shelf',
-      category: 'Fairy tales',
-    },
-    {
-      id: 2,
-      title: 'Serious shelf',
-    },
-  ]);
+  const {
+    globalState: { shelves },
+    setGlobalState,
+  } = useGlobalState();
 
   const addNewShelf = (shelf) => {
-    setChelves([...shelves, { id: shelves.length + 1, ...shelf }]);
+    setGlobalState({ type: 'ADD_SHELF', payload: shelf });
   };
 
   const handleAddButton = () => {

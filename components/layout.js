@@ -6,7 +6,7 @@ const Layout = ({ children, title = 'Home library', pageTitle = '' }) => {
     <div className="md:flex flex-col md:flex-row md:min-h-screen w-full">
       <Meta title={pageTitle} />
       <Sidebar title={title} />
-      <div className="p-8 w-full">{children}</div>
+      <div className="md:ml-64 p-8 w-full">{children}</div>
     </div>
   );
 };

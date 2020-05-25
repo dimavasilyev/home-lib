@@ -1,21 +1,28 @@
-import { useState } from 'react';
 import { useRouter } from 'next/router';
 
 import Layout from '../../components/layout';
 import BooksList from '../../components/books-list/books-list';
 import AddReviewModal from '../../components/modals/add-review-modal';
-import { useModal } from '../../hooks';
+import { useModal, useGlobalState } from '../../hooks';
 
 const ShelfPage = () => {
-  const [shelvesWithBooks] = useState([{}]);
   const { isOpen, openModalWithProps, modalProps } = useModal();
-
   const {
     query: { shelfId },
   } = useRouter();
 
+  const {
+    globalState: { books: byShelfId },
+  } = useGlobalState();
+
+  const shelfBooks = byShelfId[shelfId] ?? [];
+
   const handleAddButton = () => {
     openModalWithProps();
+  };
+
+  const addReview = (review) => {
+    console.log(review, 'review');
   };
 
   return (
@@ -26,9 +33,8 @@ const ShelfPage = () => {
       >
         + add a review
       </button>
-      {shelfId}
-      <BooksList books={[]} />
-      {isOpen && <AddReviewModal isOpen={isOpen} {...modalProps} />}
+      <BooksList books={shelfBooks} />
+      {isOpen && <AddReviewModal isOpen={isOpen} onSubmit={addReview} {...modalProps} />}
     </Layout>
   );
 };

@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import Modal from '../modal';
-import api from '../../api';
+import Modal from '../../modal';
+import api from '../../../api';
+
+import AddToShelf from './add-to-shelf';
 
 const BookDetailsModal = ({ bookId, ...props }) => {
   const [details, setDetails] = useState({});
@@ -28,10 +30,8 @@ const BookDetailsModal = ({ bookId, ...props }) => {
         ))}
       </div>
       <div className="font-semibold text-gray-600 mb-3">{publisher}</div>
-      <button className="mb-3 rounded-lg rounded-lg focus:outline-none focus:shadow-outline text-blue-700 underline">
-        + add to shelf
-      </button>
-      <div className="">
+      <AddToShelf book={details} />
+      <div className="mt-4">
         {categories?.map((category) => (
           <span
             key={category}

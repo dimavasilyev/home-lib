@@ -1,10 +1,14 @@
 import { useState } from 'react';
 import Modal from '../modal';
+import { useGlobalState } from '../../hooks';
 
 const CreateShelfModal = ({ onCreate, shelves, ...props }) => {
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState();
   const [error, setError] = useState('');
+  const {
+    globalState: { categories },
+  } = useGlobalState();
 
   const handleInputChange = (e) => {
     setTitle(e.target.value);
@@ -15,8 +19,6 @@ const CreateShelfModal = ({ onCreate, shelves, ...props }) => {
   const handleSelectChange = (e) => {
     setCategory(e.target.value);
   };
-
-  const categories = ['Drama', 'Fable', 'Classic', 'Fairy Tale'];
 
   const isFormValidated = () => {
     if (!title) {
@@ -58,7 +60,7 @@ const CreateShelfModal = ({ onCreate, shelves, ...props }) => {
         <label>
           <div className="text-lg mb-1">Title*:</div>
           <input value={title} type="text" className="input mb-1" onChange={handleInputChange} />
-          {error && <p class="text-red-500 text-xs italic mb-2">{error}</p>}
+          {error && <p className="text-red-500 text-xs italic mb-2">{error}</p>}
         </label>
         <label>
           <div className="text-lg mb-1">Category:</div>

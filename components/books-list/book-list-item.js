@@ -9,7 +9,7 @@ const BookListItem = ({ volumeInfo, onClick }) => {
       onClick={onClick}
       className="max-w-xs w-56 mr-12 mb-10 rounded overflow-hidden shadow-lg cursor-pointer"
     >
-      <img className="w-full" src={imageLinks.smallThumbnail} alt="" />
+      <img className="w-full" src={imageLinks?.smallThumbnail} alt="" />
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-2" title={title}>
           {titleString}

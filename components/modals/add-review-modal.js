@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Modal from '../modal';
 import RatingPicker from '../rating-picker';
 
-const AddReviewModal = ({ onSubmit, shelves, ...props }) => {
+const AddReviewModal = ({ onSubmit, ...props }) => {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
 

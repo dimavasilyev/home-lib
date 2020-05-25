@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-function useKeyPress(targetKey, handler) {
+export default function useKeyPress(targetKey, handler) {
   function downHandler({ key }) {
     if (key === targetKey) {
       handler();
@@ -14,5 +14,3 @@ function useKeyPress(targetKey, handler) {
     };
   }, []);
 }
-
-export default useKeyPress;

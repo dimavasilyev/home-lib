@@ -18,18 +18,14 @@ const ShelfPage = () => {
     },
   } = useGlobalState();
 
+  const { title, category } = shelves.find((shelf) => shelf.id === Number(shelfId)) ?? {};
   const shelfBooks = byShelfId[shelfId] ?? [];
-  const shelf = shelves[shelfId];
-  console.log('shelf:', shelf);
-  console.log('shelfBooks:', shelfBooks);
 
   const handleAddButton = () => {
     openModalWithProps();
   };
 
-  const addReview = (review) => {
-    console.log(review, 'review');
-  };
+  const addReview = (review) => {};
 
   return (
     <Layout pageTitle="Shelves">
@@ -39,8 +35,11 @@ const ShelfPage = () => {
       >
         + add a review
       </button>
-      <h1 className="text-3xl font-semibold mb-8">{shelf?.title}</h1>
-      <BooksList books={shelfBooks} />
+      <h1 className="text-3xl font-semibold mb-8">
+        {title}
+        {category && ` (${category})`}
+      </h1>
+      {shelfBooks.length ? <BooksList books={shelfBooks} /> : 'No books here yet :('}
       {isOpen && <AddReviewModal isOpen={isOpen} onSubmit={addReview} {...modalProps} />}
     </Layout>
   );

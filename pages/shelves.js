@@ -27,7 +27,12 @@ const ShelvesPage = () => {
       >
         + add new shelf
       </button>
-      <ShelvesList shelves={shelves} />
+      {shelves.length ? (
+        <ShelvesList shelves={shelves} />
+      ) : (
+        <div className="text-3xl">No shelves yet :(</div>
+      )}
+
       {isOpen && <CreateShelfModal isOpen={isOpen} {...modalProps} />}
     </Layout>
   );

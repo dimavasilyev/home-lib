@@ -1,17 +1,26 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import produce from 'immer';
+import Lockr from 'lockr';
+
+const myProduce = (state, func) => {
+  const newState = produce(state, func);
+  Lockr.set('globalState', newState);
+
+  return newState;
+};
 
 const reducer = (state, action) => {
   const { type, payload } = action;
-  console.log(payload, 'payload');
 
   switch (type) {
+    case 'SET_GLOBAL_STATE':
+      return payload;
     case 'ADD_SHELF':
-      return produce(state, (draft) => {
+      return myProduce(state, (draft) => {
         draft.shelves.push({ id: state.shelves.length + 1, ...payload });
       });
     case 'ADD_BOOK_TO_SHELF':
-      return produce(state, (draft) => {
+      return myProduce(state, (draft) => {
         if (draft.books.byShelfId[payload.shelfId]) {
           draft.books.byShelfId[payload.shelfId].push(payload.book);
         } else {
@@ -19,11 +28,11 @@ const reducer = (state, action) => {
         }
       });
     case 'ADD_BOOK_REVIEW':
-      return produce(state, (draft) => {
+      return myProduce(state, (draft) => {
         draft.reviews.byBookId[payload.bookId] = payload.review;
       });
     case 'ADD_SHELF_REVIEW':
-      return produce(state, (draft) => {
+      return myProduce(state, (draft) => {
         draft.reviews.byShelfId[payload.shelfId] = payload.review;
       });
     default:
@@ -33,11 +42,7 @@ const reducer = (state, action) => {
 
 const initialState = {
   books: {
-    byShelfId: {
-      '1': [],
-      '2': [],
-      '3': [],
-    },
+    byShelfId: {},
   },
   categories: ['Drama', 'Fable', 'Classic', 'Fairy Tale'],
   shelves: [
@@ -79,6 +84,14 @@ const GlobalStateContext = React.createContext();
 
 function GlobalStateProvider({ children }) {
   const [globalState, setGlobalState] = useReducer(reducer, initialState);
+
+  useEffect(() => {
+    const savedState = Lockr.get('globalState');
+
+    if (savedState) {
+      setGlobalState({ type: 'SET_GLOBAL_STATE', payload: savedState });
+    }
+  }, []);
 
   return (
     <GlobalStateContext.Provider value={{ globalState, setGlobalState }}>

@@ -12,6 +12,7 @@ const AddToShelf = ({ book }) => {
 
   const bookCategories = book.volumeInfo?.categories ?? [];
   const currentBookId = book.id;
+  const someShelvesExists = shelves.length !== 0;
 
   const addBookToShelf = (e) => {
     const shelfId = e.target.value;
@@ -28,13 +29,15 @@ const AddToShelf = ({ book }) => {
     const shelfAlreadyContainsBook = byShelfId[shelfId]?.some(
       (volume) => currentBookId === volume.id,
     );
-    console.log('shelfAlreadyContainsBook:', shelfAlreadyContainsBook);
-    console.log(byShelfId[shelfId], 'byShelfId[shelfId]');
 
     if (shelfCategoryNotMatch || shelfAlreadyContainsBook) return false;
 
     return true;
   }, []);
+
+  if (!someShelvesExists) {
+    return null;
+  }
 
   return (
     <select

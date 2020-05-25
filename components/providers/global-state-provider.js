@@ -44,39 +44,17 @@ const initialState = {
   books: {
     byShelfId: {},
   },
-  categories: ['Drama', 'Fable', 'Classic', 'Fairy Tale'],
-  shelves: [
-    {
-      id: 1,
-      title: 'My nice shelf',
-      category: 'Fairy tales',
-    },
-    {
-      id: 2,
-      title: 'Serious shelf',
-    },
+  categories: [
+    'Drama',
+    'Fable',
+    'Classic',
+    'Fairy Tale',
+    'Religion / Christian Theology / Christology',
   ],
+  shelves: [],
   reviews: {
-    byShelfId: {
-      '1': {
-        rating: 4,
-        comment: 'yes',
-      },
-      '2': {
-        rating: 4,
-        comment: 'yes',
-      },
-    },
-    byBookId: {
-      '1': {
-        rating: 4,
-        comment: 'book yes',
-      },
-      '2': {
-        rating: 4,
-        comment: 'good book',
-      },
-    },
+    byShelfId: {},
+    byBookId: {},
   },
 };
 
@@ -84,6 +62,7 @@ const GlobalStateContext = React.createContext();
 
 function GlobalStateProvider({ children }) {
   const [globalState, setGlobalState] = useReducer(reducer, initialState);
+  console.log('globalState:', globalState);
 
   useEffect(() => {
     const savedState = Lockr.get('globalState');

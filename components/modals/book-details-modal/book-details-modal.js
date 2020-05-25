@@ -30,7 +30,7 @@ const BookDetailsModal = ({ bookId, ...props }) => {
         ))}
       </div>
       <div className="font-semibold text-gray-600 mb-3">{publisher}</div>
-      <AddToShelf book={details} />
+      {details.id && <AddToShelf book={details} />}
       <div className="mt-4">
         {categories?.map((category) => (
           <span

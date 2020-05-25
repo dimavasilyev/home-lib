@@ -22,8 +22,8 @@ const Sidebar = ({ title }) => {
         href: '/shelves',
       },
       {
-        title: 'Shelf review',
-        href: '/review',
+        title: 'Shelf reviews',
+        href: '/reviews',
       },
     ],
     [],

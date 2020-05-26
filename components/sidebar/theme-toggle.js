@@ -15,6 +15,7 @@ const ThemeToggle = () => {
   }, []);
 
   const isDayMode = useMemo(() => theme === 'theme-light', [theme]);
+
   return (
     <label htmlFor="checked" className="mt-3 ml-4 inline-flex items-center cursor-pointer">
       <span className="relative">

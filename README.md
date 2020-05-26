@@ -17,7 +17,7 @@ Public [link](https://home-lib.now.sh/) to the application
 
 ### Some details
 
-- App is using 3-rd party api (Google Api) for fetching books. There are no categories api, so they are hardcoded. One of the hardcoded categories is 'Social Science / General'. The book of this category can be found by typing in search input 'fan'
+- App is using 3-rd party api (Google Api) for fetching books. Google has no categories api, so they are hardcoded. One of the hardcoded category is 'Social Science / General'. The book of this category can be found by typing in search input 'fan'
 - Implemented responsive design
 - Implemented theming (day mode / night mode)
 - Data is persisted

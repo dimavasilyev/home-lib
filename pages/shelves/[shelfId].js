@@ -26,7 +26,7 @@ const ShelfPage = () => {
     openModalWithProps();
   };
 
-  const addReview = (review) => {
+  const addShelfReview = (review) => {
     setGlobalState({ type: 'ADD_SHELF_REVIEW', payload: { shelfId, review } });
   };
 
@@ -43,7 +43,7 @@ const ShelfPage = () => {
         {category && ` (${category})`}
       </h1>
       {shelfBooks.length ? <BooksList books={shelfBooks} /> : 'No books here yet :('}
-      {isOpen && <AddReviewModal isOpen={isOpen} onSubmit={addReview} {...modalProps} />}
+      {isOpen && <AddReviewModal isOpen={isOpen} onSubmit={addShelfReview} {...modalProps} />}
     </Layout>
   );
 };

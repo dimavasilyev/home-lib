@@ -1,11 +1,22 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import Modal from '../../modal';
+import AddReviewModal from '../../modals/add-review-modal';
+import { useModal, useGlobalState } from '../../../hooks';
 import api from '../../../api';
 
 import AddToShelf from './add-to-shelf';
+import Review from './review';
 
 const BookDetailsModal = ({ bookId, ...props }) => {
   const [details, setDetails] = useState({});
+  const { isOpen, openModal, modalProps } = useModal();
+  const {
+    setGlobalState,
+    globalState: {
+      reviews: { byBookId },
+    },
+  } = useGlobalState();
+
   const { volumeInfo = {} } = details;
   const { categories, description, imageLinks = {}, title, publisher, authors } = volumeInfo;
 
@@ -16,6 +27,21 @@ const BookDetailsModal = ({ bookId, ...props }) => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const getBookReview = useCallback(() => {
+    if (Object.keys(byBookId).includes(bookId)) {
+      return byBookId[bookId];
+    }
+  }, [bookId, byBookId]);
+
+  const bookReview = getBookReview();
+
+  const addBookReview = (review) => {
+    setGlobalState({
+      type: 'ADD_BOOK_REVIEW',
+      payload: { bookId, review },
+    });
   };
 
   return (
@@ -31,6 +57,12 @@ const BookDetailsModal = ({ bookId, ...props }) => {
       </div>
       <div className="font-semibold text-gray-600 mb-3">{publisher}</div>
       {details.id && <AddToShelf book={details} />}
+      <button
+        onClick={openModal}
+        className="mb-8 block rounded-lg rounded-lg focus:outline-none focus:shadow-outline text-blue-700 underline"
+      >
+        + add a review
+      </button>
       <div className="mt-4">
         {categories?.map((category) => (
           <span
@@ -41,7 +73,15 @@ const BookDetailsModal = ({ bookId, ...props }) => {
           </span>
         ))}
       </div>
-      <div className="text-sm mt-6" dangerouslySetInnerHTML={{ __html: description }} />
+      <div
+        className="text-sm mt-6 mb-4"
+        dangerouslySetInnerHTML={{
+          __html: description,
+        }}
+      />
+      <hr className="mb-4" />
+      {bookReview && <Review {...bookReview} />}
+      {isOpen && <AddReviewModal isOpen={isOpen} onSubmit={addBookReview} {...modalProps} />}
     </Modal>
   );
 };

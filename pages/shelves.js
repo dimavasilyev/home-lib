@@ -32,7 +32,6 @@ const ShelvesPage = () => {
       ) : (
         <div className="text-3xl">No shelves yet :(</div>
       )}
-
       {isOpen && <CreateShelfModal isOpen={isOpen} {...modalProps} />}
     </Layout>
   );

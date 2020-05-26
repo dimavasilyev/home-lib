@@ -1,6 +1,8 @@
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import Link from 'next/link';
-import { useActiveLink, useKeyPress } from '../hooks';
+
+import { useActiveLink, useKeyPress, useGlobalState } from '../../hooks';
+import ThemeToggle from './theme-toggle';
 
 const Sidebar = ({ title }) => {
   const [isActive, setState] = useState(false);
@@ -68,6 +70,7 @@ const Sidebar = ({ title }) => {
             <a className={`nav-item  ${isLinkActive(href) ? 'active' : ''}`}>{title}</a>
           </Link>
         ))}
+        <ThemeToggle />
       </nav>
     </div>
   );

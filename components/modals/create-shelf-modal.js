@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import Modal from '../modal';
 import { useGlobalState } from '../../hooks';
 

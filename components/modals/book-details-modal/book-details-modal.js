@@ -37,12 +37,15 @@ const BookDetailsModal = ({ bookId, ...props }) => {
 
   const bookReview = getBookReview();
 
-  const addBookReview = (review) => {
-    setGlobalState({
-      type: 'ADD_BOOK_REVIEW',
-      payload: { bookId, review },
-    });
-  };
+  const addBookReview = useCallback(
+    (review) => {
+      setGlobalState({
+        type: 'ADD_BOOK_REVIEW',
+        payload: { bookId, review },
+      });
+    },
+    [bookId],
+  );
 
   return (
     <Modal title="Book details" onAfterOpen={fetchBookDetails} {...props}>

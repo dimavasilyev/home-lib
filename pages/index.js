@@ -16,10 +16,14 @@ const IndexPage = () => {
   const fetchBooks = async () => {
     if (debouncedSearchQuery) {
       setIsSearching(true);
-      const data = await api.getBooks(debouncedSearchQuery);
+      try {
+        const data = await api.getBooks(debouncedSearchQuery);
 
-      setBooks(data);
-      setIsSearching(false);
+        setBooks(data);
+        setIsSearching(false);
+      } catch (error) {
+        console.log(error);
+      }
     } else {
       setBooks(undefined);
     }
@@ -33,7 +37,7 @@ const IndexPage = () => {
     <Layout>
       <SearchInput onChange={setSearchQuery} />
       {!searchQuery && (
-        <div className="text-3xl text-center font-semibold">Please write something</div>
+        <div className="text-3xl text-center mt-32 font-semibold">Welcome to knowledge world</div>
       )}
       {isSearching ? (
         <div className="mt-64">

@@ -59,9 +59,9 @@ const BookDetailsModal = ({ bookId, ...props }) => {
       {details.id && <AddToShelf book={details} />}
       <button
         onClick={openModal}
-        className="mb-8 block rounded-lg rounded-lg focus:outline-none focus:shadow-outline text-blue-700 underline"
+        className="mt-2 mb-8 block rounded-lg rounded-lg focus:outline-none focus:shadow-outline text-blue-700 underline"
       >
-        + add a review
+        add a review
       </button>
       <div className="mt-4">
         {categories?.map((category) => (

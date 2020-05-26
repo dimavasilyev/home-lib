@@ -23,7 +23,7 @@ const ShelvesPage = () => {
     <Layout pageTitle="Shelves">
       <button
         onClick={handleAddButton}
-        className="mb-8 block ml-auto rounded-lg rounded-lg focus:outline-none focus:shadow-outline text-blue-700 underline"
+        className="mb-8 block ml-auto rounded-lg rounded-lg focus:outline-none focus:shadow-outline text-secondary underline"
       >
         + add new shelf
       </button>

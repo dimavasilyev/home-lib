@@ -34,11 +34,11 @@ const ShelfPage = () => {
     <Layout pageTitle="Shelves">
       <button
         onClick={handleAddButton}
-        className="absolute right-0 mr-10 mb-8 block ml-auto rounded-lg rounded-lg focus:outline-none focus:shadow-outline text-blue-700 underline"
+        className="absolute right-0 mr-10 mb-8 block ml-auto rounded-lg rounded-lg focus:outline-none focus:shadow-outline text-secondary underline"
       >
         + add a review
       </button>
-      <h1 className="text-3xl font-semibold mb-8">
+      <h1 className="text-3xl text-primary font-semibold mb-8">
         {title}
         {category && ` (${category})`}
       </h1>

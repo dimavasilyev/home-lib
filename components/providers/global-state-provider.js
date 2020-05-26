@@ -35,6 +35,10 @@ const reducer = (state, action) => {
       return myProduce(state, (draft) => {
         draft.reviews.byShelfId[payload.shelfId] = payload.review;
       });
+    case 'TOGGLE_THEME':
+      return myProduce(state, (draft) => {
+        draft.theme = state.theme === 'theme-dark' ? 'theme-light' : 'theme-dark';
+      });
     default:
       throw new Error();
   }
@@ -56,13 +60,13 @@ const initialState = {
     byShelfId: {},
     byBookId: {},
   },
+  theme: 'theme-light',
 };
 
 const GlobalStateContext = React.createContext();
 
 function GlobalStateProvider({ children }) {
   const [globalState, setGlobalState] = useReducer(reducer, initialState);
-  console.log('globalState:', globalState);
 
   useEffect(() => {
     const savedState = Lockr.get('globalState');

@@ -5,7 +5,7 @@ const ShelfListItem = ({ id, title, category, onClick }) => {
     <Link href="/shelves/[id]" as={`/shelves/${id}`}>
       <div onClick={onClick} className="w-full pointer min-w-full cursor-pointer">
         <div className="flex flex-wrap items-center mb-1">
-          <span className="text-2xl font-semibold mr-3">{title}</span>
+          <span className="text-2xl font-semibold mr-3 text-primary">{title}</span>
           {category && (
             <span className="inline-block bg-gray-200  rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
               {category}

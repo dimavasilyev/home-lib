@@ -21,7 +21,7 @@ const Modal = ({ children, onClose, title, customStyles, ...props }) => {
         ...customStyles,
       }}
     >
-      <div className="flex justify-between pb-6 items-start">
+      <div className="flex justify-between pb-6 items-start bg-primary">
         <h2 className="text-2xl font-semibold">{title}</h2>
         <button
           onClick={onClose}

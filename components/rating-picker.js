@@ -8,6 +8,7 @@ const RatingsPicker = ({ rating, onClick }) => {
 
         return (
           <svg
+            key={star}
             onClick={() => onClick(star)}
             className={`w-12 h-12 mr-1 cursor-pointer fill-current ${
               isActive ? 'text-yellow-600' : 'text-gray-200 hove:text-yellow-600'

@@ -11,9 +11,9 @@ Public [link](https://home-lib.now.sh/) to the application
 
 ### Technoligies
 
-`react`
-`next.js`
-`tailwind.css` (Wanted finally to try it and actually enjoyed a lot)
+- `react`
+- `next.js`
+- `tailwind.css` (Wanted finally to try it and actually enjoyed a lot)
 
 ### Some details
 

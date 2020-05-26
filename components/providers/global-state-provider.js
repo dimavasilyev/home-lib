@@ -49,10 +49,12 @@ const initialState = {
     byShelfId: {},
   },
   categories: [
+    'Social Science / General',
     'Drama',
     'Fable',
     'Classic',
     'Fairy Tale',
+    'Medical / General',
     'Religion / Christian Theology / Christology',
   ],
   shelves: [],

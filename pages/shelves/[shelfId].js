@@ -12,6 +12,7 @@ const ShelfPage = () => {
   } = useRouter();
 
   const {
+    setGlobalState,
     globalState: {
       shelves,
       books: { byShelfId },
@@ -25,7 +26,9 @@ const ShelfPage = () => {
     openModalWithProps();
   };
 
-  const addReview = (review) => {};
+  const addReview = (review) => {
+    setGlobalState({ type: 'ADD_SHELF_REVIEW', payload: { shelfId, review } });
+  };
 
   return (
     <Layout pageTitle="Shelves">
